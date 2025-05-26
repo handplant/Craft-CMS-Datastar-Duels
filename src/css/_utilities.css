@@ -1,0 +1,17 @@
+@utility ui-bold {
+  @apply font-medium;
+}
+
+@utility ui-link {
+  @apply hover:font-medium;
+}
+
+@utility ui-text {
+  @apply text-xs xs:text-sm md:text-base;
+}
+
+@utility ui-text-lg {
+  @apply text-sm xs:text-base md:text-lg;
+}
+
+

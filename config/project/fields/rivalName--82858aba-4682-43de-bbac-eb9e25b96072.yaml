@@ -1,0 +1,16 @@
+columnSuffix: null
+handle: rivalName
+instructions: null
+name: 'Rival - Name'
+searchable: false
+settings:
+  byteLimit: null
+  charLimit: 50
+  code: false
+  initialRows: 4
+  multiline: false
+  placeholder: null
+  uiMode: normal
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\PlainText

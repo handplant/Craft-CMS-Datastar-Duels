@@ -1,0 +1,82 @@
+{% if not currentUser %}
+  {% location '/login' %}
+  {% exit %}
+{% endif %}
+
+{% set duel = craft.entries.id(duelId).eagerly().one() %}
+{% set duelRivalOne = duel.duelRivalOne.one() %}
+{% set duelRivalTwo = duel.duelRivalTwo.one() %}
+{% set rival = craft.entries.id(duelRivalId).one() %}
+
+{% set existingVote = craft.entries()
+  .section('votes')
+  .relatedTo([
+    'and',
+    { targetElement: duel },
+    { targetElement: currentUser }
+  ])
+  .one() %}
+
+{% if existingVote and existingVote.voteRival.one().id == rival.id %}
+  {% set response = datastar.runAction('elements/delete', {
+    elementId: existingVote.id
+  }) %}
+{% else %}
+  {% set response = datastar.runAction('entries/save-entry', {
+    sectionId: 11,
+    entryId: existingVote ? existingVote.id : null,
+    fields: {
+      voteDuel: [duel.id],
+      voteRival: [rival.id],
+      voteUser: [currentUser.id]
+    }
+  }) %}
+{% endif %}
+
+{% if response.isSuccessful %}
+  {% set allVotes = craft.entries()
+    .section('votes')
+    .relatedTo({ targetElement: duel })
+    .eagerly()
+    .all() %}
+
+  {% set votesForA = allVotes|filter(vote => vote.voteRival.one().id == duelRivalOne.id)|length %}
+  {% set votesForB = allVotes|filter(vote => vote.voteRival.one().id == duelRivalTwo.id)|length %}
+  {% set userVote = allVotes|filter(vote => vote.voteUser.one().id == currentUser.id)|first %}
+  {% set userVoteRival = userVote ? userVote.voteRival.one() : null %}
+
+  {% fragment %}
+    <div id="duel{{ duel.id }}votesForA">
+      {{ votesForA }}
+    </div>
+  {% endfragment %}
+
+  {% fragment %}
+    <span id="duel{{ duel.id }}buttonForA" class="{{ userVoteRival and userVoteRival.id == duelRivalOne.id ? '' : 'opacity-60 grayscale' }}">
+      🔥
+    </span>
+  {% endfragment %}
+
+  {% fragment %}
+    <div id="duel{{ duel.id }}votesForB">
+      {{ votesForB }}
+    </div>
+  {% endfragment %}
+
+  {% fragment %}
+    <span id="duel{{ duel.id }}buttonForB" class="{{ userVoteRival and userVoteRival.id == duelRivalTwo.id ? '' : 'opacity-60 grayscale' }}">
+      🔥
+    </span>
+  {% endfragment %}
+
+{% else %}
+  {% fragment %}
+    <div id="alert" class="alert-error">
+      {% for error in response.data.errors %}
+        {{ error|first }}
+      {% endfor %}
+    </div>
+  {% endfragment %}
+{% endif %}
+
+

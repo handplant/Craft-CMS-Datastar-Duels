@@ -1,0 +1,50 @@
+{% fragment %}
+  <div id="alert-register"></div>
+{% endfragment %}
+
+{% set registerResponse = datastar.runAction('users/save-user', {
+  username: signals.username,
+  email: signals.email,
+  password: signals.password
+}) %}
+
+ {% if registerResponse.isSuccessful %}
+   {% fragment %}
+     <div id="form"></div>
+   {% endfragment %}
+   {% fragment %}
+     <div id="info" class="space-y-4">
+       <p>
+         🛡️ Welcome, Brave Soul!
+       </p>
+       <p>
+         Your registration with {{ systemName }} is complete — but your journey has only just begun.
+       </p>
+       <p>
+         To prove your identity and unlock your path, you must confirm your email address.
+       </p>
+       <p>
+         👉 Check your inbox now!<br>
+         We’ve sent you a message with a sacred link. Click it to activate your account and take your place among the worthy.
+       </p>
+       <p>
+         📬 Didn’t get the message?<br>
+         Sometimes even fate lands in the spam folder — have a look there, too.
+       </p>
+     </div>
+   {% endfragment %}
+ {% else %}
+   {% fragment %}
+     <div id="alert-register" class="alert-error text-left m-0 p-0">
+       {{ registerResponse.data.message }}
+     </div>
+   {% endfragment %}
+
+   {% if registerResponse.data.errors %}
+     {% do signals.test('Fehler') %}
+     {% for field, fieldErrors in registerResponse.data.errors %}
+       {% do signals.set('errors.' ~ field, fieldErrors[0]) %}
+     {% endfor %}
+   {% endif %}
+ {% endif %}
+

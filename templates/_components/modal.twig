@@ -1,0 +1,32 @@
+<div data-show="$modal == true" class="ds-cloak border border-secondary p-6 mb-6"
+     data-signals="{ rivalone: '', rivaltwo: ''}"
+     data-on-signal-change-modal="{{ datastar.post('_datastar/signals.twig') }}"
+>
+  {% if not currentUser %}
+    <div class="text-center">
+      Hold up, warrior – you need to log in to start a duel.
+      <p class="mt-6 flex-inline gap-4">
+        <a href="/login" class="ui-btn">Login</a>
+        <a href="/register" class="ui-btn">Register</a>
+      </p>
+    </div>
+  {% else %}
+    <form data-on-submit="{{ datastar.post('_datastar/create.twig') }}">
+      <p class="text-center mb-4">New duel</p>
+      <div class="grid grid-cols-[1fr_auto_1fr] gap-4 items-center">
+        <div>
+          <input data-bind-rivalone type="text" placeholder="Rival ONE" class="ui-input text-right"/>
+        </div>
+        <div class="text-center ui-bold text-2xl">
+          ⚔️
+        </div>
+        <div>
+          <input data-bind-rivaltwo type="text" placeholder="Rival TWO" class="ui-input"/>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <button type="submit" class="ui-btn">Fight</button>
+      </div>
+    </form>
+  {% endif %}
+</div>

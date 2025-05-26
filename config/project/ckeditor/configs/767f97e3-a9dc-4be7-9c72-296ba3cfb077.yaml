@@ -1,0 +1,23 @@
+css: '.ui-h-teaser { font-weight: bold; font-size: 120%; }'
+headingLevels:
+  - 2
+  - 3
+  - 4
+js: "return {\r\n  link: {\r\n    addTargetToExternalLinks: false,\r\n    decorators: {\r\n      openInNewTab: {\r\n        attributes: {\r\n          rel: 'noopener noreferrer',\r\n          target: '_blank',\r\n        },\r\n        label: 'Open in a new tab',\r\n        mode: 'manual',\r\n      },\r\n    },\r\n  },\r\n  style: {\r\n    definitions: [\r\n      {\r\n        name: 'Teaser',\r\n        element: 'p',\r\n        classes: [\r\n          'ui-h-teaser',\r\n        ],\r\n      }\r\n    ],\r\n  },\r\n}"
+name: Builder
+toolbar:
+  - heading
+  - style
+  - '|'
+  - bold
+  - underline
+  - italic
+  - link
+  - '|'
+  - bulletedList
+  - numberedList
+  - '|'
+  - createEntry
+  - '|'
+  - removeFormat
+  - sourceEditing

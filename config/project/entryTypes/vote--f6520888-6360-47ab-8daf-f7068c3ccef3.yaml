@@ -1,0 +1,72 @@
+color: null
+fieldLayouts:
+  35ed4038-2d90-43a3-b076-7783e89f62b1:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-05-12T11:36:51+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: bf5f35e0-4b95-4ce2-a02c-cb8a995d2aff # Vote - Duel
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e6aaf25b-7e5b-473a-87aa-20dc91ff2a34
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-12T11:36:51+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 99c264a8-9de6-482c-b3a8-01aefeecea32 # Vote - Rival
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: d4cc2ca5-498b-4df8-bd62-1d52ce1cc4db
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-05-12T11:36:51+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: e91d6576-3520-4444-b7ad-a224b18aff55 # Vote - User
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 62280103-6c40-46fa-bf38-3829f1f5f70b
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: dcc07b34-2b08-47c9-8f43-a5c416ec2a26
+        userCondition: null
+handle: vote
+hasTitleField: false
+icon: ballot-check
+name: Vote
+showSlugField: false
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: '{object.voteDuel.one().title}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

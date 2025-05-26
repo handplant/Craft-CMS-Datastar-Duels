@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="{{ craft.app.language|slice(0, 2) }}">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  {% hook 'seomateMeta' %}
+  {% include "_globals/favicons" %}
+  {% include "_globals/fonts" %}
+  {#  {% include "_globals/matamo" %} #}
+  <style>
+    .ds-cloak {
+      display: none;
+    }
+  </style>
+  {{ craft.vite.script("src/js/app.js", false) }}
+</head>
+<body class="font-sans antialiased ui-text bg-ink" data-signals="{ modal: false, fetching: false }">
+<header class="p-4 max-w-screen-lg mx-auto">
+  {{ include("_components/header", {}, withContext = false) }}
+</header>
+<main class="p-4 max-w-screen-lg mx-auto">
+  <div id="alert"></div>
+  {{ include("_components/modal", {}, withContext = false) }}
+  {% block main %}{% endblock %}
+</main>
+<footer class="fixed right-0 bottom-0 text-xs p-2">
+  {{ include("_components/footer", {}, withContext = false) }}
+</footer>
+<div
+  id="loading"
+  class="datastar-indicator"
+  data-class="{loading: $fetching}"
+>
+  Loading...
+</div>
+<script type="module" src="/datastar.js"></script>
+</body>
+</html>

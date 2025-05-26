@@ -1,0 +1,13 @@
+description: null
+handle: warriors
+name: Warriors
+permissions:
+  - 'createentries:4e7fc661-4999-4941-b175-502f958ca466' # Rivals
+  - 'createentries:d70191d4-6067-4b9c-a2a3-9bc81c9de71e' # Votes
+  - 'createentries:ed1643c7-2832-4f69-abfc-466b30602451' # Duels
+  - 'saveentries:4e7fc661-4999-4941-b175-502f958ca466' # Rivals
+  - 'saveentries:d70191d4-6067-4b9c-a2a3-9bc81c9de71e' # Votes
+  - 'saveentries:ed1643c7-2832-4f69-abfc-466b30602451' # Duels
+  - 'viewentries:4e7fc661-4999-4941-b175-502f958ca466' # Rivals
+  - 'viewentries:d70191d4-6067-4b9c-a2a3-9bc81c9de71e' # Votes
+  - 'viewentries:ed1643c7-2832-4f69-abfc-466b30602451' # Duels

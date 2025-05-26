@@ -1,0 +1,29 @@
+{% extends "_layouts/base" %}
+
+{% requireLogin %}
+
+{% block main %}
+  {% cache using key 'warrior-' ~ currentUser.id %}
+    {% set duelsFromUser = craft.entries()
+      .section('duels')
+      .authorId(currentUser.id)
+      .all() %}
+
+    <section class="page">
+      <div class=" mb-12 flex justify-between ">
+        <h1 class="ui-text-lg ui-bold">🏰 Castle "{{ currentUser.username }}"</h1>
+        <p><a href="/logout" class="ui-link">🔓 logout</a></p>
+      </div>
+      <p class="ui-bold mb-2">{{ duelsFromUser|length }} duels</p>
+      <ul id="result" class="result">
+        {% for duel in duelsFromUser %}
+          <li>
+            {{ include("_components/duel", {
+              duel: duel,
+            }, withContext = false) }}
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endcache %}
+{% endblock %}

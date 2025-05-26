@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 0c9c18b5-86d4-4acb-ac32-a5a9a3b06c7f # Rival
+handle: rivals
+maxAuthors: 1
+name: Rivals
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  6eab4b84-63fb-4382-bdd7-d2bee959aafb: # $SITE_NAME
+    enabledByDefault: true
+    hasUrls: true
+    template: _entry/rival.twig
+    uriFormat: 'rivals/{slug}'
+type: channel

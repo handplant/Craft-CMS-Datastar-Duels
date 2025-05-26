@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /cpresources/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /admin/
+
+Sitemap: https://mydomain.de/sitemap.xml

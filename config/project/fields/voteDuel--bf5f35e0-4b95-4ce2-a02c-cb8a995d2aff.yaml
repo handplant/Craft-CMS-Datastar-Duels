@@ -1,0 +1,22 @@
+columnSuffix: null
+handle: voteDuel
+instructions: null
+name: 'Vote - Duel'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: null
+  selectionLabel: null
+  showCardsInGrid: false
+  showSiteMenu: false
+  sources:
+    - 'section:ed1643c7-2832-4f69-abfc-466b30602451' # Duels
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries

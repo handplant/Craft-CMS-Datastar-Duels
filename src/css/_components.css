@@ -1,0 +1,42 @@
+@layer components {
+  /* BUTTON & LINKS */
+  .ui-btn {
+    @apply ui-text ui-bold inline-flex items-center justify-center gap-3 bg-primary hover:bg-primary/80 px-3 py-1 uppercase text-white hover:cursor-pointer focus:outline-none focus:ring-3 focus:ring-primary/30 focus:border-primary transition ;
+  }
+
+  .ui-vote-btn {
+    @apply inline-flex items-center bg-ink px-1 text-xl md:text-2xl transition hover:-translate-y-1 hover:cursor-pointer focus:outline-none;
+  }
+
+  .ui-form {
+    @apply max-w-lg mx-auto grid gap-5 border border-secondary p-12;
+  }
+
+  .ui-form-group {
+    @apply space-y-2;
+
+    label {
+      @apply block;
+    }
+  }
+
+  .ui-label {
+    @apply block;
+  }
+
+  .ui-input {
+    @apply ui-text w-full h-10 leading-none px-2 py-2 border border-secondary hover:border-gray-400 focus:outline-none focus:ring-3 focus:ring-primary/20 focus:border-primary focus:bg-white transition disabled:bg-gray-100;
+  }
+
+  .ui-select {
+    @apply ui-text h-10 leading-none px-2 py-2 border border-secondary hover:border-gray-400 focus:outline-none focus:ring-3 focus:ring-primary/20 focus:border-primary focus:bg-white transition disabled:bg-gray-100;
+  }
+
+  .ui-checkbox {
+    @apply appearance-none border border-secondary hover:border-gray-400 bg-ink checked:border-primary checked:bg-primary focus:outline-none focus:ring-3 focus:ring-primary/20 focus:border-primary transition disabled:bg-gray-100;
+  }
+
+  .alert-error {
+    @apply text-orange-600 ui-bold;
+  }
+}

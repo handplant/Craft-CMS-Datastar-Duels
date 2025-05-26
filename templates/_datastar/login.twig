@@ -1,0 +1,17 @@
+{% set loginResponse = datastar.runAction('users/login', {
+  loginName: signals.loginname,
+  password: signals.password,
+  rememberMe: signals.rememberme,
+}) %}
+{% if not loginResponse.isSuccessful %}
+  {% fragment %}
+    <div id="alert-login"></div>
+  {% endfragment %}
+  {% fragment %}
+    <div id="alert-login" class="alert-error text-left m-0 p-0">
+      {{ loginResponse.data.message }}
+    </div>
+  {% endfragment %}
+{% else %}
+  {% location '/profile' %}
+{% endif %}

@@ -1,0 +1,9 @@
+baseUrl: $SITE_URL
+enabled: true
+handle: default
+hasUrls: true
+language: en
+name: $SITE_NAME
+primary: true
+siteGroup: 998295c3-03ea-4a83-b787-ba1d5a930248 # Craft 5
+sortOrder: 1

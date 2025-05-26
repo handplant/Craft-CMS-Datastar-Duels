@@ -1,0 +1,127 @@
+dateModified: 1748251178
+elementSources:
+  craft\elements\Entry:
+    -
+      defaultSort:
+        - postDate
+        - desc
+      defaultViewMode: ''
+      disabled: false
+      key: '*'
+      tableAttributes:
+        - status
+        - section
+        - postDate
+        - expiryDate
+        - authors
+        - link
+      type: native
+    -
+      defaultSort:
+        - title
+        - asc
+      disabled: false
+      key: singles
+      tableAttributes:
+        - status
+        - dateCreated
+        - dateUpdated
+        - revisionCreator
+        - link
+      type: native
+    -
+      heading: Channels
+      type: heading
+    -
+      defaultSort:
+        - postDate
+        - desc
+      defaultViewMode: ''
+      disabled: false
+      key: 'section:ed1643c7-2832-4f69-abfc-466b30602451' # Duels
+      tableAttributes:
+        - status
+        - 'field:187d56a1-6b24-4822-9bff-edefcc4d69a9' # Duel - Score
+        - authors
+        - link
+        - slug
+        - dateCreated
+        - revisionCreator
+        - dateUpdated
+      type: native
+    -
+      defaultSort:
+        - postDate
+        - desc
+      defaultViewMode: ''
+      disabled: false
+      key: 'section:4e7fc661-4999-4941-b175-502f958ca466' # Rivals
+      tableAttributes:
+        - status
+        - postDate
+        - expiryDate
+        - authors
+        - link
+        - id
+      type: native
+    -
+      key: 'section:d70191d4-6067-4b9c-a2a3-9bc81c9de71e' # Votes
+      type: native
+email:
+  fromEmail: $EMAIL_SYSTEM_EMAIL_ADDRESS
+  fromName: $EMAIL_SENDER_NAME
+  replyToEmail: $EMAIL_REPLY_TO_ADDRESS
+  template: ''
+  transportSettings:
+    host: $SMTP_HOST
+    password: $SMTP_PASSWORD
+    port: $SMTP_PORT
+    useAuthentication: $SMTP_USE_AUTHENTIFICATION
+    username: $SMTP_USERNAME
+  transportType: craft\mail\transportadapters\Smtp
+meta:
+  __names__:
+    0c9c18b5-86d4-4acb-ac32-a5a9a3b06c7f: Rival # Rival
+    4e7fc661-4999-4941-b175-502f958ca466: Rivals # Rivals
+    4f40df4d-988a-4b75-a4da-4fd0802ead53: Teaser # Teaser
+    6eab4b84-63fb-4382-bdd7-d2bee959aafb: $SITE_NAME # $SITE_NAME
+    016e9ada-2e97-441a-8e42-6a0e99dace91: 'Duel - Rival One' # Duel - Rival One
+    41cb1185-3cbc-4c5b-82c6-d2b3c3858376: Home # Home
+    068cbf85-9a16-4e3b-a502-593a9e10844d: Rich # Rich
+    85ac7a39-7c84-4707-9ebc-e0f0666d6023: Simple # Simple
+    99c264a8-9de6-482c-b3a8-01aefeecea32: 'Vote - Rival' # Vote - Rival
+    163e2603-df59-49f9-a112-13791fe431d2: 'Public Schema' # Public Schema
+    187d56a1-6b24-4822-9bff-edefcc4d69a9: 'Duel - Score' # Duel - Score
+    474c035f-d206-4c2e-9c47-47a068346e3f: 'Duel - Rival Two' # Duel - Rival Two
+    767f97e3-a9dc-4be7-9c72-296ba3cfb077: Builder # Builder
+    82858aba-4682-43de-bbac-eb9e25b96072: 'Rival - Name' # Rival - Name
+    998295c3-03ea-4a83-b787-ba1d5a930248: 'Craft 5' # Craft 5
+    a1b9e011-ff18-423b-9b80-c99494031cb7: Home # Home
+    b9e9cf5c-bd0d-4769-b247-67897d87f3f7: Warriors # Warriors
+    bf5f35e0-4b95-4ce2-a02c-cb8a995d2aff: 'Vote - Duel' # Vote - Duel
+    d70191d4-6067-4b9c-a2a3-9bc81c9de71e: Votes # Votes
+    e91d6576-3520-4444-b7ad-a224b18aff55: 'Vote - User' # Vote - User
+    e350ba4f-78d8-4850-b773-09f4d8d9a9b5: Common # Common
+    ed1643c7-2832-4f69-abfc-466b30602451: Duels # Duels
+    f6520888-6360-47ab-8daf-f7068c3ccef3: Vote # Vote
+    fe086988-a12b-4d64-9960-ee4e81f8faa7: Duel # Duel
+plugins:
+  datastar:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  seomate:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  vite:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: pro
+  live: true
+  name: $SITE_NAME
+  retryDuration: null
+  schemaVersion: 5.7.0.3
+  timeZone: Europe/Berlin

@@ -1,0 +1,38 @@
+color: null
+fieldLayouts:
+  e3b8b8c4-476f-4473-ac46-eab70b099029:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-04-15T10:28:17+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 82858aba-4682-43de-bbac-eb9e25b96072 # Rival - Name
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: Rival
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: e3452d2f-c143-42bc-830c-dfc7df330eef
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 2684adcf-7b71-4f9b-9404-77da2f156b5d
+        userCondition: null
+handle: rival
+hasTitleField: false
+icon: user
+name: Rival
+showSlugField: true
+showStatusField: true
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: '{rivalName}'
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

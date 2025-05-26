@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: fe086988-a12b-4d64-9960-ee4e81f8faa7 # Duel
+handle: duels
+maxAuthors: 1
+name: Duels
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  6eab4b84-63fb-4382-bdd7-d2bee959aafb: # $SITE_NAME
+    enabledByDefault: true
+    hasUrls: true
+    template: _entry/duel.twig
+    uriFormat: 'duels/{slug}'
+type: channel

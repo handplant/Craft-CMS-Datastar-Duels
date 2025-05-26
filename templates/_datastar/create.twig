@@ -1,0 +1,138 @@
+{# Variablen initialisieren #}
+
+{% set errors = [] %}
+{% set status = {
+  rivalA: { id: null, isNew: false },
+  rivalB: { id: null, isNew: false }
+} %}
+
+{# Existierende Teilnehmer prüfen #}
+{% set existingRivalOne = craft.entries()
+  .section('rivals')
+  .title(signals.rivalone)
+  .one() %}
+
+{% set existingRivalTwo = craft.entries()
+  .section('rivals')
+  .title(signals.rivaltwo)
+  .one() %}
+
+{# Existierendes Duell prüfen #}
+{% set existingDuel = craft.entries()
+  .section('duels')
+  .relatedTo([
+    'and',
+    { targetElement: existingRivalOne },
+    { targetElement: existingRivalTwo }
+  ])
+  .one() %}
+
+{% if signals.rivalone == "" or signals.rivaltwo == "" %}
+  {% fragment %}
+    <div id="alert" class="alert-error text-center mb-5">
+      It takes two to duel!
+    </div>
+  {% endfragment %}
+{% elseif signals.rivalone == signals.rivaltwo %}
+  {% fragment %}
+    <div id="alert" class="alert-error text-center mb-5">
+      A duel needs two different rivals!
+    </div>
+  {% endfragment %}
+{% elseif existingDuel %}
+  {% fragment %}
+    <div id="alert" class="alert-error text-center mb-5">
+      Nice try, but this duel already exists!<br>
+      <a class="!text-black" href="{{ existingDuel.getUrl() }}">👉 check it out!</a>
+    </div>
+  {% endfragment %}
+{% else %}
+  {# Teilnehmer A verarbeiten #}
+  {% if existingRivalOne %}
+    {% set status = status|merge({
+      rivalA: { id: existingRivalOne.id, isNew: false }
+    }) %}
+  {% else %}
+    {% set rivalAResponse = datastar.runAction('entries/save-entry', {
+      sectionId: 10,
+      fields: { rivalName: signals.rivalone }
+    }) %}
+
+    {% if rivalAResponse.isSuccessful %}
+      {% set status = status|merge({
+        rivalA: { id: rivalAResponse.data.id, isNew: true }
+      }) %}
+    {% else %}
+      {% for field, fieldErrors in rivalAResponse.data.errors %}
+        {% set errors = errors|merge([fieldErrors|join(', ')]) %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+
+  {# Teilnehmer B verarbeiten #}
+  {% if existingRivalTwo %}
+    {% set status = status|merge({
+      rivalB: { id: existingRivalTwo.id, isNew: false }
+    }) %}
+  {% else %}
+    {% set rivalBResponse = datastar.runAction('entries/save-entry', {
+      sectionId: 10,
+      fields: { rivalName: signals.rivaltwo }
+    }) %}
+
+    {% if rivalBResponse.isSuccessful %}
+      {% set status = status|merge({
+        rivalB: { id: rivalBResponse.data.id, isNew: true }
+      }) %}
+    {% else %}
+      {% for field, fieldErrors in rivalBResponse.data.errors %}
+        {% set errors = errors|merge([fieldErrors|join(', ')]) %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+
+  {# Duell erstellen wenn beide Teilnehmer vorhanden #}
+  {% if status.rivalA.id and status.rivalB.id %}
+    {% set duelResponse = datastar.runAction('entries/save-entry', {
+      sectionId: 9,
+      fields: {
+        duelScore: 1,
+        duelRivalOne: [status.rivalA.id],
+        duelRivalTwo: [status.rivalB.id]
+      }
+    }) %}
+
+    {#    {% if not duelResponse.isSuccessful %} #}
+    {#      {% for field, fieldErrors in duelResponse.data.errors %} #}
+    {#        {% set errors = errors|merge([fieldErrors|join(', ')]) %} #}
+    {#      {% endfor %} #}
+    {#    {% endif %} #}
+  {% endif %}
+
+  {% if errors %}
+    {% fragment %}
+      <div id="alert" class="alert-error text-center mb-5">
+        {% for error in errors %}
+          <div>{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endfragment %}
+  {% else %}
+    {% do signals.set('modal', false) %}
+    {% do signals.set('rivalone', '') %}
+    {% do signals.set('rivaltwo', '') %}
+    {% set newDuel = craft.entries.id(duelResponse.data.id).one() %}
+
+    {% fragment %}
+      <div id="alert"></div>
+    {% endfragment %}
+
+    {% fragment with {selector: '#result', mergeMode: 'prepend'} %}
+      <li class="animate-new">
+        {{ include("_components/duel", {
+          duel: newDuel
+        }, withContext = false) }}
+      </li>
+    {% endfragment %}
+  {% endif %}
+{% endif %}

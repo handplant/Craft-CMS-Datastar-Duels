@@ -1,0 +1,16 @@
+{% extends "_layouts/cp" %}
+
+{% block content %}
+  {#  <h1>{{ title }}</h1> #}
+
+  <h2>Top 100 Duels</h2>
+  <ul>
+    {% for entry in entries %}
+      <li>
+        <a href="{{ entry.url }}">{{ entry.title }}</a> ({{ entry.duelScore }})
+      </li>
+    {% else %}
+      <li>Keine Einträge gefunden.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

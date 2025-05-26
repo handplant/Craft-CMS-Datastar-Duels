@@ -1,0 +1,41 @@
+{% do signals.set('page', 1) %}
+{% set query = craft.entries.section('duels') %}
+{% if signals.search|length %}
+  {% set query = query.search(signals.search) %}
+{% endif %}
+{% set duelsCount = query.count() %}
+{% set query = query.orderBy(signals.sort).limit(signals.limit).eagerly() %}
+{% set duels = query.all() %}
+
+{% fragment %}
+  <ul id="result"></ul>
+{% endfragment %}
+{% fragment %}
+  <ul id="loadmore"></ul>
+{% endfragment %}
+
+{% fragment %}
+  <ul id="result">
+    {% for duel in duels %}
+      <li>
+        {{ include("_components/duel", { duel: duel }, withContext = false) }}
+      </li>
+    {% else %}
+      <li>Looks like no one's fighting... yet.</li>
+    {% endfor %}
+  </ul>
+{% endfragment %}
+
+{% if duelsCount > signals.limit %}
+  {% fragment %}
+    <div id="loadmore">
+      <button class="ui-btn text-sm"
+              data-indicator-fetching
+              data-on-click="$page++;{{ datastar.post('_datastar/load.twig') }}">
+        Load More
+      </button>
+    </div>
+  {% endfragment %}
+{% endif %}
+
+

@@ -1,0 +1,32 @@
+{% extends "_layouts/base" %}
+
+{% block main %}
+  <section
+    class="page"
+    data-on-load="{{ datastar.get('_datastar/search.twig') }}"
+    data-indicator-fetching
+    data-signals="{ page: 1, limit: 20, search: '', sort: 'duelScore DESC' }">
+    <div data-show="$modal == false" class="flex items-center space-x-5 mb-4">
+      <input
+        id="searchInput"
+        type="text"
+        class="ui-input"
+        placeholder="Look for a fight..."
+        data-indicator-fetching
+        data-bind-search
+        data-on-input__debounce.300ms="{{ datastar.post('_datastar/search.twig') }}"
+      />
+      <select
+        class="ui-select"
+        data-indicator-fetching
+        data-bind-sort
+        data-on-change="$sort = event.target.value; {{ datastar.post('_datastar/search.twig') }}"
+      >
+        <option value="duelScore DESC">💥 hot</option>
+        <option value="dateCreated DESC">🌟 new</option>
+      </select>
+    </div>
+    <ul id="result"></ul>
+    <div id="loadmore"></div>
+  </section>
+{% endblock %}

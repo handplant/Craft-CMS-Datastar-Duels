@@ -1,0 +1,60 @@
+{% extends "_layouts/base" %}
+
+{% block main %}
+  <section data-signals="{ loginname: '', password: '', rememberme: '' }">
+    <div id="info"></div>
+    <form id="form" accept-charset="UTF-8" class="ui-form" data-indicator-fetching data-on-submit="{{ datastar.post('_datastar/login.twig') }}">
+      <p class="ui-bold text-xl">Login</p>
+      <p class="text-sm"><a class="ui-link" href="{{ url('register') }}">or create a Warrior!</a></p>
+      <div id="alert-login"></div>
+
+      <div class="ui-form-group">
+        <label for="loginName">Username or email</label>
+        {{ input('text', 'loginName', craft.app.user.rememberedUsername, {
+          id: 'loginName',
+          autocomplete: 'username',
+          class: 'ui-input',
+          'data-bind-loginname': '',
+        }) }}
+      </div>
+
+      <div class="ui-form-group">
+        <label for="password">Password</label>
+        {{ input('password', 'password', null, {
+          id: 'password',
+          class: 'ui-input',
+          'data-bind-password': '',
+        }) }}
+      </div>
+
+      <div class="ui-form-group">
+        <div class="flex items-center">
+          <div class="group grid size-4 grid-cols-1">
+            {{ input('checkbox', 'rememberMe', '1', {
+              id: 'rememberMe',
+              class: 'ui-checkbox col-start-1 row-start-1 ',
+              'data-bind-rememberme': '',
+            }) }}
+            <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
+              <path class="opacity-0 group-has-[:checked]:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path class="opacity-0 group-has-[:indeterminate]:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <label for="rememberMe" class="ms-2 text-sm">Remember me</label>
+        </div>
+      </div>
+
+      <button class="ui-btn">
+        <span data-class="{hidden: $fetching}">
+        Login
+          </span>
+        <span class="datastar-indicator" data-class="{loading: $fetching}">
+          Loading...
+        </span>
+      </button>
+
+      <p class="text-sm"><a class="ui-link" href="{{ url('reset-password') }}">Forgot your password?</a></p>
+
+    </form>
+  </section>
+{% endblock %}

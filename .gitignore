@@ -1,0 +1,35 @@
+/.env
+/scripts/.env.sh
+
+# COMPOSER
+/vendor
+
+# ASSETS
+/web/cpresources/*
+/web/uploads/*
+/web/.htaccess
+/web/core
+
+# CRAFT STORAGE
+/storage/*
+!/storage/rebrand/
+!/storage/.gitkeep
+
+# Craft Related
+/config/license.key
+
+# BUILD FILES
+/node_modules/*
+/yarn-error.log
+/npm-debug.log
+
+# MISC FILES
+.cache
+.DS_Store
+.idea
+.nova
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

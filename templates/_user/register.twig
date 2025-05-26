@@ -1,0 +1,62 @@
+{% extends "_layouts/base" %}
+
+{% block main %}
+  {% set user = user ?? null %}
+
+  <section data-signals="{ username: '', email: '', password: '', errors: { username: '', email: '', password: '' } }">
+    <div id="info"></div>
+    <form
+      id="form"
+      accept-charset="UTF-8"
+      class="ui-form"
+      data-indicator-fetching
+      data-on-submit="{{ datastar.post('_datastar/register.twig') }}"
+    >
+      <p class="ui-bold text-xl">Register</p>
+      <p class="text-sm"><a class="ui-link" href="{{ url('login') }}">or login your Warrior!</a></p>
+
+      <div id="alert-register"></div>
+
+      <div class="ui-form-group">
+        <label for="username">Username</label>
+        {{ input('text', 'username', null, {
+          id: 'username',
+          autocomplete: 'username',
+          class: 'ui-input',
+          'data-bind-username': '',
+        }) }}
+        <p data-text="$errors.username" class="alert-error text-xs"></p>
+      </div>
+
+      <div class="ui-form-group">
+        <label for="email">Email</label>
+        {{ input('email', 'email', null, {
+          id: 'email',
+          autocomplete: 'email',
+          class: 'ui-input',
+          'data-bind-email': '',
+        }) }}
+        <p data-text="$errors.email" class="alert-error text-xs"></p>
+      </div>
+
+      <div class="ui-form-group">
+        <label for="password">Password</label>
+        {{ input('password', 'password', null, {
+          id: 'password',
+          class: 'ui-input',
+          'data-bind-password': '',
+        }) }}
+        <p data-text="$errors.password" class="alert-error text-xs"></p>
+      </div>
+
+      <button class="ui-btn">
+        <span data-class="{hidden: $fetching}">
+          Register
+        </span>
+        <span class="datastar-indicator" data-class="{loading: $fetching}">
+          Loading...
+        </span>
+      </button>
+    </form>
+  </section>
+{% endblock %}

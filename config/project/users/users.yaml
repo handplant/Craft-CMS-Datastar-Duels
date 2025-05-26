@@ -1,0 +1,8 @@
+allowPublicRegistration: true
+deactivateByDefault: false
+defaultGroup: b9e9cf5c-bd0d-4769-b247-67897d87f3f7 # Warriors
+photoSubpath: null
+photoVolumeUid: null
+require2fa: false
+requireEmailVerification: true
+validateOnPublicRegistration: false

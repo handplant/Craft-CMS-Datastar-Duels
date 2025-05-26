@@ -1,0 +1,7 @@
+{% if signals.modal == false %}
+  {% do signals.set('rivalone', '') %}
+  {% do signals.set('rivaltwo', '') %}
+  {% fragment %}
+    <div id="alert"></div>
+  {% endfragment %}
+{% endif %}

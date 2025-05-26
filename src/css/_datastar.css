@@ -1,0 +1,23 @@
+#loadmore {
+  @apply text-center p-4 mt-4;
+}
+
+#loading {
+  @apply fixed left-0 bottom-0 bg-primary text-white text-sm p-2 ui-bold leading-none;
+}
+
+#result, .result {
+  @apply divide-gray-300 divide-y divide-dashed;
+
+  li {
+    @apply py-2;
+  }
+}
+
+.datastar-indicator {
+  @apply hidden;
+}
+
+.datastar-indicator.loading {
+  @apply block;
+}

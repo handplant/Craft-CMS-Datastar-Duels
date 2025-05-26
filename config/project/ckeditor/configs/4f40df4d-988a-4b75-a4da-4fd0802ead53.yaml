@@ -1,0 +1,11 @@
+headingLevels: false
+js: "return {\r\n  link: {\r\n    addTargetToExternalLinks: false,   \r\n    decorators: {\r\n      openInNewTab: {\r\n        attributes: {\r\n          rel: \"noopener noreferrer\",\r\n          target: \"_blank\"\r\n        },\r\n        label: \"Open in a new tab\",\r\n        mode: \"manual\"\r\n      }\r\n    }\r\n  }\r\n}"
+name: Teaser
+toolbar:
+  - bold
+  - underline
+  - italic
+  - link
+  - '|'
+  - removeFormat
+  - sourceEditing

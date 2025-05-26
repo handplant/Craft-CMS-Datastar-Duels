@@ -1,0 +1,48 @@
+{% extends "_layouts/base" %}
+
+{% block main %}
+  {% cache using key 'duel-' ~ entry.id %}
+    {% set rivalA = entry.duelRivalOne.one() %}
+    {% set rivalB = entry.duelRivalTwo.one() %}
+    {% set duelsWithRivalOne = craft.entries()
+      .section('duels')
+      .relatedTo(rivalA.id)
+      .id('not ' ~ entry.id)
+      .all() %}
+
+    {% set duelsWithRivalTwo = craft.entries()
+      .section('duels')
+      .relatedTo(rivalB.id)
+      .id('not ' ~ entry.id)
+      .all() %}
+
+    <section class="page">
+      <h1 class="ui-text-lg ui-bold mb-12">⚔️ Duel "{{ entry.title }}"</h1>
+
+      {{ include("_components/duel", {
+        duel: entry
+      }, withContext = false) }}
+    </section>
+
+    {% if duelsWithRivalOne or duelsWithRivalTwo %}
+      <section class="grid md:grid-cols-2 gap-10 md:gap-14 mt-8 border-t border-secondary pt-8">
+        <ul class="md:text-right">
+          <li class="ui-bold mb-2">{{ rivalA.title }}</li>
+          {% for duel in duelsWithRivalOne %}
+            <li>
+              <a href="{{ duel.getUrl() }}" class="ui-link">{{ duel.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+        <ul>
+          <li class="ui-bold mb-2">{{ rivalB.title }}</li>
+          {% for duel in duelsWithRivalTwo %}
+            <li>
+              <a href="{{ duel.getUrl() }}" class="ui-link">{{ duel.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+  {% endcache %}
+{% endblock %}
