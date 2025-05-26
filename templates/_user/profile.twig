@@ -2,6 +2,12 @@
 
 {% requireLogin %}
 
+{% set seomate = {
+  meta: {
+    title: 'Castle - ' ~ currentUser.username,
+  },
+} %}
+
 {% block main %}
   {% cache using key 'warrior-' ~ currentUser.id %}
     {% set duelsFromUser = craft.entries()

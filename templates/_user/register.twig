@@ -1,16 +1,22 @@
 {% extends "_layouts/base" %}
 
+{% set seomate = {
+  meta: {
+    title: 'Register',
+  },
+} %}
+
 {% block main %}
   {% set user = user ?? null %}
 
   <section data-signals="{ username: '', email: '', password: '', errors: { username: '', email: '', password: '' } }">
     <div id="info"></div>
     <form
-      id="form"
-      accept-charset="UTF-8"
-      class="ui-form"
-      data-indicator-fetching
-      data-on-submit="{{ datastar.post('_datastar/register.twig') }}"
+        id="form"
+        accept-charset="UTF-8"
+        class="ui-form"
+        data-indicator-fetching
+        data-on-submit="{{ datastar.post('_datastar/register.twig') }}"
     >
       <p class="ui-bold text-xl">Register</p>
       <p class="text-sm"><a class="ui-link" href="{{ url('login') }}">or login your Warrior!</a></p>

@@ -1,12 +1,18 @@
 {% extends "_layouts/base" %}
 
+{% set seomate = {
+  meta: {
+    title: 'About',
+  },
+} %}
+
 {% block main %}
   <section class="page">
     <h1 class="text-xl mb-12">About</h1>
     <div class="space-y-6">
       <p>
         Hi, I’m <a href="https://webworker.me/" class="ui-link ui-bold hover:italic" target="_blank" rel="noopener">Andi Grether</a>, a full stack developer specializing in <a
-            class="ui-link ui-bold hover:italic" href="https://craftcms.com/" target="_blank" rel="noopener">Craft CMS</a>.
+          class="ui-link ui-bold hover:italic" href="https://craftcms.com/" target="_blank" rel="noopener">Craft CMS</a>.
         This site was created as a test project to explore the possibilities of <a class="ui-link ui-bold hover:italic" href="https://plugins.craftcms.com/datastar?craft5" target="_blank"
                                                                                    rel="noopener">Datastar</a>,
         a powerful new plugin for Craft CMS.

@@ -1,5 +1,11 @@
 {% extends "_layouts/base" %}
 
+{% set seomate = {
+  meta: {
+    title: 'Login',
+  },
+} %}
+
 {% block main %}
   <section data-signals="{ loginname: '', password: '', rememberme: '' }">
     <div id="info"></div>
