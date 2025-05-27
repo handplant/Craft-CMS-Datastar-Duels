@@ -14,6 +14,10 @@
   }
 }
 
+#resultRivalOne, #resultRivalTwo {
+  @apply absolute top-full w-full p-4 shadow-lg z-10 mt-1 bg-ink border border-secondary text-sm space-y-1;
+}
+
 .datastar-indicator {
   @apply hidden;
 }

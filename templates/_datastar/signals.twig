@@ -1,6 +1,8 @@
 {% if signals.modal == false %}
   {% do signals.set('rivalone', '') %}
   {% do signals.set('rivaltwo', '') %}
+  {% do signals.showsuggestionone(false) %}
+  {% do signals.showsuggestiontwo(false) %}
   {% fragment %}
     <div id="alert"></div>
   {% endfragment %}

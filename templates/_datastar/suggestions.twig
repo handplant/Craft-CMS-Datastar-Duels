@@ -1,0 +1,36 @@
+{% set rivalinput = side == 1 ? 'rivalone' : 'rivaltwo' %}
+{% set showsuggestion = side == 1 ? 'showsuggestionone' : 'showsuggestiontwo' %}
+{% set resultId = side == 1 ? 'resultRivalOne' : 'resultRivalTwo' %}
+
+{% if attribute(signals, rivalinput)|length >= 3 %}
+  {% set rivals = craft.entries.section('rivals')
+    .search(attribute(signals, rivalinput))
+    .orderBy('title ASC')
+    .limit(10)
+    .eagerly()
+    .all() %}
+
+  {% if rivals|length %} #}
+    {% do signals.set(showsuggestion, true) %}
+    {% fragment %}
+      <ul id="{{ resultId }}" data-show="${{ showsuggestion }}">
+        {% for rival in rivals %}
+          <li>
+            <button data-on-click__prevent="${{ showsuggestion }} = false; ${{ rivalinput }} = '{{ rival.title }}'" class="hover:cursor-pointer">
+              {{ rival.title }}
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endfragment %}
+  {% else %}
+    {% do signals.set(showsuggestion, false) %}
+    {% fragment %}
+      <ul id="{{ resultId }}" data-show="${{ showsuggestion }}"></ul>
+    {% endfragment %}
+  {% endif %}
+{% else %}
+  {% fragment %}
+    <ul id="{{ resultId }}" data-show="${{ showsuggestion }}"></ul>
+  {% endfragment %}
+{% endif %}
