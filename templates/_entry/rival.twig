@@ -9,8 +9,8 @@
 
     <section class="page">
       <h1 class="ui-text-lg ui-bold mb-12">🛡️ Rival "{{ entry.title }}"</h1>
+      <p class="ui-bold mb-2">{{ duelsWithRival|length }} duels</p>
       <ul class="result">
-        <li class="ui-bold mb-2">{{ duelsWithRival|length }} duels</li>
         {% for duel in duelsWithRival %}
           <li>
             {{ include("_components/duel", {

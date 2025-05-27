@@ -1,3 +1,4 @@
+{% set currentPath = craft.app.request.getPathInfo() %}
 <div class="flex justify-between items-center">
   <a href="/" class="ui-bold tracking-widest text-xl md:text-2xl uppercase">
     <span class="block versus" data-splitting="chars">
@@ -5,13 +6,15 @@
     </span>
   </a>
   <div class="text-xl md:text-2xl flex gap-4">
-    <button data-on-click="$modal = !$modal" class="group relative hover:text-orange-500 hover:cursor-pointer transition duration-300">
-      <span>⚔️</span>
-      <span class="ds-cloak absolute -z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-orange-400 pointer-events-none transition duration-300 blur-sm"
-            data-class="{'opacity-0 group-hover:opacity-100': $modal == false, 'opacity-100': $modal == true}">
+    {% if currentPath == '' or currentPath == 'profile' %}
+      <button data-on-click="$modal = !$modal" class="group relative hover:text-orange-500 hover:cursor-pointer transition duration-300">
+        <span>⚔️</span>
+        <span class="ds-cloak absolute -z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl text-orange-400 pointer-events-none transition duration-300 blur-sm"
+              data-class="{'opacity-0 group-hover:opacity-100': $modal == false, 'opacity-100': $modal == true}">
         🔥
       </span>
-    </button>
+      </button>
+    {% endif %}
     <a href="{{ currentUser ? '/profile' : '/login' }}">🏰</a>
   </div>
 </div>

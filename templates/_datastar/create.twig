@@ -121,6 +121,7 @@
     {% do signals.set('modal', false) %}
     {% do signals.set('rivalone', '') %}
     {% do signals.set('rivaltwo', '') %}
+    {% do signals.set('sort', 'dateCreated DESC') %}
     {% set newDuel = craft.entries.id(duelResponse.data.id).one() %}
 
     {% fragment %}
