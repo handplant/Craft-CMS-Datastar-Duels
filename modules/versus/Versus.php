@@ -19,11 +19,27 @@ use modules\versus\assetbundles\VersusAsset;
 class Versus extends Module
 
 {
-    private static function hotScore(int $votes, int $timestamp): float
+    private static function hotScore(int $votes, int $timestamp, ?int $lastVoteTimestamp = null): float
     {
-        $order = log10(max($votes, 1));
-        $seconds = $timestamp - strtotime('2025-01-01');
-        return round($order + $seconds / 45000, 7);
+        // Logarithmische Skalierung der Votes (wie auf Reddit)
+        $voteScore = $votes > 0 ? log10($votes) * 2 : 0;
+
+        // Zeitfaktor basierend auf Erstellungsdatum
+        $baseTime = strtotime('2025-01-01');
+        $timeScore = ($timestamp - $baseTime) / 45000;
+
+        // Aktivitätsbonus basierend auf letztem Vote
+        $activityBonus = 0;
+        if ($lastVoteTimestamp) {
+            $hoursSinceLastVote = (time() - $lastVoteTimestamp) / 3600;
+            // Exponentiell abnehmender Bonus über 72 Stunden
+            $activityBonus = max(0, 1 - ($hoursSinceLastVote / 72));
+        }
+
+        // Gewichtung der Komponenten
+        $score = ($voteScore * 1.5) + $timeScore + ($activityBonus * 0.5);
+
+        return round($score, 7);
     }
 
     public function init()
@@ -94,8 +110,14 @@ class Versus extends Module
                         ->section('votes')
                         ->relatedTo(['targetElement' => $duel])
                         ->count();
+                    $lastVote = Entry::find()
+                        ->section('votes')
+                        ->relatedTo(['targetElement' => $duel])
+                        ->orderBy(['dateCreated' => SORT_DESC])
+                        ->one();
                     $timestamp = $duel->dateCreated->getTimestamp();
-                    $score = self::hotScore($votes, $timestamp);
+                    $lastVoteTimestamp = $lastVote ? $lastVote->dateCreated->getTimestamp() : null;
+                    $score = self::hotScore($votes, $timestamp, $lastVoteTimestamp);
                     $duel->setFieldValue('duelScore', $score);
                     Craft::$app->elements->saveElement($duel, false);
                 }

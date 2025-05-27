@@ -4,7 +4,7 @@ instructions: null
 name: 'Duel - Score'
 searchable: false
 settings:
-  decimals: 0
+  decimals: 7
   defaultValue: null
   max: null
   min: 0
