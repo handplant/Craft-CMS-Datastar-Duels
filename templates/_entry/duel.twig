@@ -1,5 +1,20 @@
 {% extends "_layouts/base" %}
 
+{% set seomate = {
+  meta: {
+    title: '⚔️ Duel "' ~ entry.title ~ '"',
+    description: 'Explore the duel ⚔️ ' ~ entry.title ~ ' ⚔️.',
+  },
+  og: {
+    title: '⚔️ Duel ' ~ entry.title ~ ' | ' ~ siteName,
+    description: 'Explore the duel ⚔️ ' ~ entry.title ~ ' ⚔️.',
+  },
+  twitter: {
+    title: '⚔️ Duel ' ~ entry.title ~ ' | ' ~ siteName,
+    description: 'Explore the duel ⚔️ ' ~ entry.title ~ ' ⚔️.',
+  },
+} %}
+
 {% block main %}
   {% cache using key 'duel-' ~ entry.id %}
     {% set rivalA = entry.duelRivalOne.one() %}

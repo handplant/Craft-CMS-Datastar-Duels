@@ -1,5 +1,21 @@
 {% extends "_layouts/base" %}
 
+{% set seomate = {
+  meta: {
+    title: '⚔️ Epic Duels',
+    description: 'Discover and vote on exciting duels! Choose your favorites and join the battle 🏆',
+  },
+  og: {
+    title: '⚔️ Epic Duels | ' ~ siteName,
+    description: 'Discover and vote on exciting duels! Choose your favorites and join the battle 🏆',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '⚔️ Epic Duels | ' ~ siteName,
+    description: 'Discover and vote on exciting duels! Choose your favorites and join the battle 🏆',
+  }
+} %}
+
 {% block main %}
   <section
     class="page"

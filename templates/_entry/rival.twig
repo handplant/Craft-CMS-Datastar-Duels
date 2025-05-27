@@ -1,5 +1,20 @@
 {% extends "_layouts/base" %}
 
+{% set seomate = {
+  meta: {
+    title: '🛡️ Rival "' ~ entry.title ~ '"',
+    description: 'Explore the duels involving the rival 🛡️ ' ~ entry.title ~ ' 🛡.',
+  },
+  og: {
+    title: '🛡️ Rival ' ~ entry.title ~ ' | ' ~ siteName,
+    description: 'Explore the duels involving the rival 🛡️ ' ~ entry.title ~ ' 🛡.',
+  },
+  twitter: {
+    title: '🛡️ Rival ' ~ entry.title ~ ' | ' ~ siteName,
+    description: 'Explore the duels involving the rival 🛡️ ' ~ entry.title ~ ' 🛡.',
+  },
+} %}
+
 {% block main %}
   {% cache using key 'rival-' ~ entry.id %}
     {% set duelsWithRival = craft.entries()
