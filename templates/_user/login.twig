@@ -8,6 +8,14 @@
 
 {% block main %}
   <section data-signals="{ loginname: '', password: '', rememberme: '' }">
+    {% if craft.app.request.getQueryParam('emailVerified') or craft.app.request.getQueryParam('accountActivated') %}
+      <div id="verified" class="text-center my-5 text-primary">
+        Your Warrior credentials are verified! <br>Enter the arena and join the duels! ⚔️
+      </div>
+    {% else %}
+      <div id="verified"></div>
+    {% endif %}
+
     <div id="info"></div>
     <form id="form" accept-charset="UTF-8" class="ui-form" data-indicator-fetching data-on-submit="{{ datastar.post('_datastar/login.twig') }}">
       <p class="ui-bold text-xl">Login</p>

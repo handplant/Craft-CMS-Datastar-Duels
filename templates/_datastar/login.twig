@@ -3,6 +3,10 @@
   password: signals.password,
   rememberMe: signals.rememberme,
 }) %}
+  {% fragment %}
+    <div id="verified"></div>
+  {% endfragment %}
+
 {% if not loginResponse.isSuccessful %}
   {% fragment %}
     <div id="alert-login"></div>

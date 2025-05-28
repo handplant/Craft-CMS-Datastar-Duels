@@ -26,4 +26,6 @@ return GeneralConfig::create()
     ->aliases([
         '@webroot' => dirname(__DIR__) . '/web',
     ])
-    ->loginPath('/login');
+    ->loginPath('/login')
+    ->verifyEmailSuccessPath('/login?emailVerified=1')
+    ->activateAccountSuccessPath('/login?accountActivated=1');
