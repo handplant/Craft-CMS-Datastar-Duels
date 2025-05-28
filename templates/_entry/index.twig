@@ -1,6 +1,8 @@
 {% extends "_layouts/base" %}
 
-{% do craft.entryCount.increment(entry.id) %}
+{% if craft.app.request.userAgent not matches '/mittwald HealthCheck/' %}
+  {% do craft.entryCount.increment(entry.id) %}
+{% endif %}
 
 {% set seomate = {
   meta: {
