@@ -24,6 +24,7 @@
     "craftcms/cms": "5.7.7",
     "nystudio107/craft-vite": "5.0.1",
     "putyourlightson/craft-datastar": "1.0.0-beta.9",
+    "putyourlightson/craft-entry-count": "4.0.0",
     "vaersaagod/seomate": "3.1.1",
     "vlucas/phpdotenv": "^5.4.0"
   },

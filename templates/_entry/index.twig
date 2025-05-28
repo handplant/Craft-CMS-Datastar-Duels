@@ -1,5 +1,7 @@
 {% extends "_layouts/base" %}
 
+{% do craft.entryCount.increment(entry.id) %}
+
 {% set seomate = {
   meta: {
     title: '⚔️ Epic Duels',
