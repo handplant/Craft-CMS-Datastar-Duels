@@ -8,6 +8,10 @@
 {% set duelRivalTwo = duel.duelRivalTwo.one() %}
 {% set rival = craft.entries.id(duelRivalId).one() %}
 
+{% executescript %}
+  _paq.push(['trackEvent', 'Vote', 'Duel', '{{ duel.title|e('js') }}']);
+{% endexecutescript %}
+
 {% set existingVote = craft.entries()
   .section('votes')
   .relatedTo([

@@ -1,6 +1,9 @@
 {% do signals.set('page', 1) %}
 {% set query = craft.entries.section('duels') %}
 {% if signals.search|length %}
+  {% executescript %}
+    _paq.push(['trackEvent', 'Search', 'Query', '{{ signals.search|e('js') }}']);
+  {% endexecutescript %}
   {% set query = query.search(signals.search) %}
 {% endif %}
 {% set duelsCount = query.count() %}
