@@ -11,9 +11,9 @@
   "author": "Andi Grether",
   "license": "ISC",
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.7",
-    "@tailwindcss/vite": "^4.1.7",
-    "tailwindcss": "^4.1.7",
+    "@tailwindcss/postcss": "^4.1.8",
+    "@tailwindcss/vite": "^4.1.8",
+    "tailwindcss": "^4.1.8",
     "vite": "^6.3.5",
     "vite-plugin-restart": "^0.4.2"
   }
