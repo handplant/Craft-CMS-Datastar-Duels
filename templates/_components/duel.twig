@@ -14,27 +14,27 @@
 {% set userVote = currentUser ? allVotes|filter(vote => vote.voteUser.one().id == currentUser.id)|first : null %}
 {% set userVoteRival = userVote ? userVote.voteRival.one() : null %}
 
-<div data-on-intersect__full="{{ datastar.post('_datastar/intersect.twig', { duelTitle: duel.title }) }}" class="grid grid-cols-[auto_1fr_auto] gap-4">
+<div id="duel{{ duel.id }}" data-on-intersect__full="{{ datastar.post('_datastar/intersect.twig', { duelTitle: duel.title }) }}" class="grid grid-cols-[auto_1fr_auto] gap-4">
   <div class="text-center text-xs">
     <button data-on-click="el.classList.add('voted'); setTimeout(() => el.classList.remove('voted'), 600);{{ datastar.post('_datastar/vote.twig', { duelId: duel.id, duelRivalId: duelRivalOne.id }) }}"
             class="ui-vote-btn">
-      <span id="duel{{ duel.id }}buttonForA" class="{{ userVoteRival and userVoteRival.id == duelRivalOne.id ? '' : 'opacity-60 grayscale' }}">
+      <span class="{{ userVoteRival and userVoteRival.id == duelRivalOne.id ? '' : 'opacity-60 grayscale' }}">
         🔥
       </span>
     </button>
-    <div id="duel{{ duel.id }}votesForA">
+    <div>
       {{ votesForA }}
     </div>
   </div>
   <div class="grid grid-cols-[1fr_auto_1fr] gap-4 items-center">
     <div class="text-right">
-      <a id="duel{{ duel.id }}RivalOne" class="ui-rival {{ leaderId == duelRivalOne.id ? ' ui-leader' : '' }}" href="{{ duelRivalOne.getUrl() }}">
+      <a class="ui-rival {{ leaderId == duelRivalOne.id ? ' ui-leader' : '' }}" href="{{ duelRivalOne.getUrl() }}">
         {{ duelRivalOne.title }}
       </a>
     </div>
     <a class="hover:-translate-y-1 transition origin-center" href="{{ duel.getUrl() }}">⚔️</a>
     <div>
-      <a id="duel{{ duel.id }}RivalTwo" class="ui-rival {{ leaderId == duelRivalTwo.id ? ' ui-leader' : '' }}" href="{{ duelRivalTwo.getUrl() }}">
+      <a class="ui-rival {{ leaderId == duelRivalTwo.id ? ' ui-leader' : '' }}" href="{{ duelRivalTwo.getUrl() }}">
         {{ duelRivalTwo.title }}
       </a>
     </div>
@@ -42,11 +42,11 @@
   <div class="text-center text-xs">
     <button data-on-click="el.classList.add('voted'); setTimeout(() => el.classList.remove('voted'), 600);{{ datastar.post('_datastar/vote.twig', { duelId: duel.id, duelRivalId: duelRivalTwo.id }) }}"
             class="ui-vote-btn">
-      <span id="duel{{ duel.id }}buttonForB" class="{{ userVoteRival and userVoteRival.id == duelRivalTwo.id ? '' : 'opacity-60 grayscale' }}">
+      <span class="{{ userVoteRival and userVoteRival.id == duelRivalTwo.id ? '' : 'opacity-60 grayscale' }}">
         🔥
       </span>
     </button>
-    <div id="duel{{ duel.id }}votesForB">
+    <div>
       {{ votesForB }}
     </div>
   </div>
