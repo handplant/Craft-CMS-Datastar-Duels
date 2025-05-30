@@ -35,6 +35,8 @@
       voteUser: [currentUser.id]
     }
   }) %}
+
+  {% do craft.entryCount.increment(existingVote ? existingVote.id : response.data.id) %}
 {% endif %}
 
 {% if response.isSuccessful %}

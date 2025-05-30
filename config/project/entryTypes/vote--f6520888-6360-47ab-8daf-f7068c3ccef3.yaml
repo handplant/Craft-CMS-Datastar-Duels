@@ -67,6 +67,6 @@ showSlugField: false
 showStatusField: true
 slugTranslationKeyFormat: null
 slugTranslationMethod: site
-titleFormat: '{object.voteDuel.one().title}'
+titleFormat: '{object.voteDuel.one().title} - {object.voteRival.one().title}'
 titleTranslationKeyFormat: null
 titleTranslationMethod: site
