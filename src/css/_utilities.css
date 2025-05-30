@@ -14,4 +14,11 @@
   @apply text-sm xs:text-base md:text-lg;
 }
 
+@utility ui-leader {
+  @apply bg-primary/10;
+}
+
+@utility ui-rival {
+  @apply ui-link hyphens-auto;
+}
 

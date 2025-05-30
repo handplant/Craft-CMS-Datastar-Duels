@@ -48,6 +48,7 @@
 
   {% set votesForA = allVotes|filter(vote => vote.voteRival.one().id == duelRivalOne.id)|length %}
   {% set votesForB = allVotes|filter(vote => vote.voteRival.one().id == duelRivalTwo.id)|length %}
+  {% set leaderId = votesForA == votesForB ? null : (votesForA > votesForB ? duelRivalOne.id : duelRivalTwo.id) %}
   {% set userVote = allVotes|filter(vote => vote.voteUser.one().id == currentUser.id)|first %}
   {% set userVoteRival = userVote ? userVote.voteRival.one() : null %}
 
@@ -74,6 +75,30 @@
       🔥
     </span>
   {% endfragment %}
+
+  {% if leaderId %}
+    {% fragment %}
+      <a id="duel{{ duel.id }}RivalOne" class="ui-rival {{ leaderId == duelRivalOne.id ? ' ui-leader' : '' }}" href="{{ duelRivalOne.getUrl() }}">
+        {{ duelRivalOne.title }}
+      </a>
+    {% endfragment %}
+    {% fragment %}
+      <a id="duel{{ duel.id }}RivalTwo" class="ui-rival {{ leaderId == duelRivalTwo.id ? ' ui-leader' : '' }}" href="{{ duelRivalTwo.getUrl() }}">
+        {{ duelRivalTwo.title }}
+      </a>
+    {% endfragment %}
+  {% else %}
+    {% fragment %}
+      <a id="duel{{ duel.id }}RivalOne" class="ui-rival" href="{{ duelRivalOne.getUrl() }}">
+        {{ duelRivalOne.title }}
+      </a>
+    {% endfragment %}
+    {% fragment %}
+      <a id="duel{{ duel.id }}RivalTwo" class="ui-rival" href="{{ duelRivalTwo.getUrl() }}">
+        {{ duelRivalTwo.title }}
+      </a>
+    {% endfragment %}
+  {% endif %}
 
 {% else %}
   {% fragment %}

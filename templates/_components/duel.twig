@@ -9,6 +9,8 @@
 {% set votesForA = allVotes|filter(vote => vote.voteRival.one().id == duelRivalOne.id)|length %}
 {% set votesForB = allVotes|filter(vote => vote.voteRival.one().id == duelRivalTwo.id)|length %}
 
+{% set leaderId = votesForA == votesForB ? null : (votesForA > votesForB ? duelRivalOne.id : duelRivalTwo.id) %}
+
 {% set userVote = currentUser ? allVotes|filter(vote => vote.voteUser.one().id == currentUser.id)|first : null %}
 {% set userVoteRival = userVote ? userVote.voteRival.one() : null %}
 
@@ -26,13 +28,13 @@
   </div>
   <div class="grid grid-cols-[1fr_auto_1fr] gap-4 items-center">
     <div class="text-right">
-      <a class="ui-link break-word hyphens-auto" href="{{ duelRivalOne.getUrl() }}">
+      <a id="duel{{ duel.id }}RivalOne" class="ui-rival {{ leaderId == duelRivalOne.id ? ' ui-leader' : '' }}" href="{{ duelRivalOne.getUrl() }}">
         {{ duelRivalOne.title }}
       </a>
     </div>
     <a class="hover:-translate-y-1 transition origin-center" href="{{ duel.getUrl() }}">⚔️</a>
     <div>
-      <a class="ui-link break-word hyphens-auto" href="{{ duelRivalTwo.getUrl() }}">
+      <a id="duel{{ duel.id }}RivalTwo" class="ui-rival {{ leaderId == duelRivalTwo.id ? ' ui-leader' : '' }}" href="{{ duelRivalTwo.getUrl() }}">
         {{ duelRivalTwo.title }}
       </a>
     </div>
