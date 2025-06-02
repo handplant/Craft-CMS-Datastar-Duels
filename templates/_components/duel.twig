@@ -32,7 +32,7 @@
         {{ duelRivalOne.title }}
       </a>
     </div>
-    <a class="hover:-translate-y-1 transition origin-center" href="{{ duel.getUrl() }}">⚔️ {{ duel.duelScore }}//{{ duel.dateCreated|date('d.m.y') }}</a>
+    <a class="hover:-translate-y-1 transition origin-center" href="{{ duel.getUrl() }}">⚔️</a>
     <div>
       <a class="ui-rival {{ leaderId == duelRivalTwo.id ? ' ui-leader' : '' }}" href="{{ duelRivalTwo.getUrl() }}">
         {{ duelRivalTwo.title }}
