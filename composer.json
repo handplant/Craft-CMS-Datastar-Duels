@@ -21,7 +21,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "craftcms/cms": "5.7.8.1",
+    "craftcms/cms": "5.7.8.2",
     "nystudio107/craft-vite": "5.0.1",
     "putyourlightson/craft-datastar": "1.0.0-beta.9",
     "putyourlightson/craft-entry-count": "4.0.0",
