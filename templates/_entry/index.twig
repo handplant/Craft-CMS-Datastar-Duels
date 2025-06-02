@@ -23,7 +23,7 @@
 {% block main %}
   <section
     class="page"
-    data-on-load="{{ datastar.get('_datastar/search.twig') }}"
+    data-on-load="{{ datastar.post('_datastar/duels.twig') }}"
     data-indicator-fetching
     data-signals="{ page: 1, limit: 20, search: '', sort: 'duelScore DESC' }">
     <div data-show="$modal == false" class="flex items-center space-x-5 mb-4">
@@ -34,13 +34,13 @@
         placeholder="Look for a fight..."
         data-indicator-fetching
         data-bind-search
-        data-on-input__debounce.300ms="{{ datastar.post('_datastar/search.twig') }}"
+        data-on-input__debounce.300ms="$page = 1; {{ datastar.post('_datastar/duels.twig') }}"
       />
       <select
         class="ui-select"
         data-indicator-fetching
         data-bind-sort
-        data-on-change="$sort = event.target.value; {{ datastar.post('_datastar/search.twig') }}"
+        data-on-change="$page = 1; $sort = event.target.value; {{ datastar.post('_datastar/duels.twig') }}"
       >
         <option value="duelScore DESC">💥 hot</option>
         <option value="dateCreated DESC">🌟 new</option>

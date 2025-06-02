@@ -14,7 +14,7 @@
 {% set userVote = currentUser ? allVotes|filter(vote => vote.voteUser.one().id == currentUser.id)|first : null %}
 {% set userVoteRival = userVote ? userVote.voteRival.one() : null %}
 
-<div id="duel{{ duel.id }}" data-on-intersect__full="{{ datastar.post('_datastar/intersect.twig', { duelTitle: duel.title }) }}" class="grid grid-cols-[auto_1fr_auto] gap-4">
+<div id="duel{{ duel.id }}" class="grid grid-cols-[auto_1fr_auto] gap-4">
   <div class="text-center text-xs">
     <button data-on-click="el.classList.add('voted'); setTimeout(() => el.classList.remove('voted'), 600);{{ datastar.post('_datastar/vote.twig', { duelId: duel.id, duelRivalId: duelRivalOne.id }) }}"
             class="ui-vote-btn">
@@ -32,7 +32,7 @@
         {{ duelRivalOne.title }}
       </a>
     </div>
-    <a class="hover:-translate-y-1 transition origin-center" href="{{ duel.getUrl() }}">⚔️</a>
+    <a class="hover:-translate-y-1 transition origin-center" href="{{ duel.getUrl() }}">⚔️ {{ duel.duelScore }}//{{ duel.dateCreated|date('d.m.y') }}</a>
     <div>
       <a class="ui-rival {{ leaderId == duelRivalTwo.id ? ' ui-leader' : '' }}" href="{{ duelRivalTwo.getUrl() }}">
         {{ duelRivalTwo.title }}

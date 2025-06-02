@@ -1,0 +1,67 @@
+{# templates/_datastar/duels.twig #}
+{% set offset = (signals.page - 1) * signals.limit %}
+{% set query = craft.entries.section('duels') %}
+
+{% if signals.search|length %}
+  {% executescript %}
+    _paq.push(['trackEvent', 'Search', 'Query', '{{ signals.search|e('js') }}']);
+  {% endexecutescript %}
+  {% set query = query.search(signals.search) %}
+{% endif %}
+
+{% set duelsCount = query.count() %}
+{% set query = query.orderBy(signals.sort).limit(signals.limit).eagerly() %}
+
+{# Bei Pagination Offset hinzufügen #}
+{% if signals.page > 1 %}
+  {% set query = query.offset(offset) %}
+{% endif %}
+
+{% set duels = query.all() %}
+
+{# Erste Seite #}
+{% if signals.page == 1 %}
+  {% fragment %}
+    <ul id="result"></ul>
+  {% endfragment %}
+  {% fragment %}
+    <ul id="loadmore"></ul>
+  {% endfragment %}
+  {% fragment %}
+    <ul id="result">
+      {% for duel in duels %}
+        <li>
+          {{ include("_components/duel", { duel: duel }, withContext = false) }}
+        </li>
+      {% else %}
+        <li>Looks like no one's fighting... yet.</li>
+      {% endfor %}
+    </ul>
+  {% endfragment %}
+{% else %}
+  {# Weitere Seiten #}
+  {% fragment with {selector: '#result', mergeMode: 'append'} %}
+    {% for duel in duels %}
+      <li>
+        {{ include("_components/duel", { duel: duel }, withContext = false) }}
+      </li>
+    {% endfor %}
+  {% endfragment %}
+{% endif %}
+
+{# Load More Button #}
+{% if duelsCount > offset + signals.limit %}
+  {% fragment %}
+    <div id="loadmore">
+      <button class="ui-btn text-sm"
+              data-indicator-fetching
+              data-on-click="$page++;{{ datastar.post('_datastar/duels.twig') }}">
+        Load More
+      </button>
+    </div>
+  {% endfragment %}
+{% else %}
+  {% fragment %}
+    <div id="loadmore"></div>
+  {% endfragment %}
+{% endif %}
