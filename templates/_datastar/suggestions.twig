@@ -3,6 +3,7 @@
 {% set resultId = side == 1 ? 'resultRivalOne' : 'resultRivalTwo' %}
 
 {% if attribute(signals, rivalinput)|length >= 3 %}
+
   {% set rivals = craft.entries.section('rivals')
     .search(attribute(signals, rivalinput))
     .orderBy('title ASC')
@@ -10,9 +11,9 @@
     .eagerly()
     .all() %}
 
-  {% if rivals|length %} #}
-    {% do signals.set(showsuggestion, true) %}
-    {% fragment %}
+  {% if rivals|length %}
+    {% patchsignals { (showsuggestion): true } %}
+    {% patchelements %}
       <ul id="{{ resultId }}" data-show="${{ showsuggestion }}">
         {% for rival in rivals %}
           <li>
@@ -22,15 +23,15 @@
           </li>
         {% endfor %}
       </ul>
-    {% endfragment %}
+    {% endpatchelements %}
   {% else %}
-    {% do signals.set(showsuggestion, false) %}
-    {% fragment %}
+    {% patchsignals { (showsuggestion): false } %}
+    {% patchelements %}
       <ul id="{{ resultId }}" data-show="${{ showsuggestion }}"></ul>
-    {% endfragment %}
+    {% endpatchelements %}
   {% endif %}
 {% else %}
-  {% fragment %}
+  {% patchelements %}
     <ul id="{{ resultId }}" data-show="${{ showsuggestion }}"></ul>
-  {% endfragment %}
+  {% endpatchelements %}
 {% endif %}

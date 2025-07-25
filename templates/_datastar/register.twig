@@ -1,6 +1,6 @@
-{% fragment %}
+{% patchelements %}
   <div id="alert-register"></div>
-{% endfragment %}
+{% endpatchelements %}
 
 {% set registerResponse = datastar.runAction('users/save-user', {
   username: signals.username,
@@ -9,10 +9,10 @@
 }) %}
 
  {% if registerResponse.isSuccessful %}
-   {% fragment %}
+   {% patchelements %}
      <div id="form"></div>
-   {% endfragment %}
-   {% fragment %}
+   {% endpatchelements %}
+   {% patchelements %}
      <div id="info" class="space-y-4">
        <p>
          🛡️ Welcome, Brave Soul!
@@ -32,18 +32,18 @@
          Sometimes even fate lands in the spam folder — have a look there, too.
        </p>
      </div>
-   {% endfragment %}
+   {% endpatchelements %}
  {% else %}
-   {% fragment %}
+   {% patchelements %}
      <div id="alert-register" class="alert-error text-left m-0 p-0">
        {{ registerResponse.data.message }}
      </div>
-   {% endfragment %}
+   {% endpatchelements %}
 
    {% if registerResponse.data.errors %}
-     {% do signals.test('Fehler') %}
+     {% patchsignals { test: 'Fehler' } %}
      {% for field, fieldErrors in registerResponse.data.errors %}
-       {% do signals.set('errors.' ~ field, fieldErrors[0]) %}
+       {% patchsignals { ('errors.' ~ field): fieldErrors[0] } %}
      {% endfor %}
    {% endif %}
  {% endif %}

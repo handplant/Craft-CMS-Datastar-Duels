@@ -1,9 +1,10 @@
 {% if signals.modal == false %}
-  {% do signals.set('rivalone', '') %}
-  {% do signals.set('rivaltwo', '') %}
-  {% do signals.showsuggestionone(false) %}
-  {% do signals.showsuggestiontwo(false) %}
-  {% fragment %}
+  {% patchsignals { rivalone: '' } %}
+  {% patchsignals { rivaltwo: '' } %}
+  {% patchsignals { showsuggestionone: false } %}
+  {% patchsignals { showsuggestiontwo: false } %}
+
+  {% patchelements %}
     <div id="alert"></div>
-  {% endfragment %}
+  {% endpatchelements %}
 {% endif %}

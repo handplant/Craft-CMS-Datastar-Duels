@@ -22,7 +22,7 @@ return [
         /**
          * Whether to register the Datastar script on the frontend.
          */
-        'registerScript' => false,
+        'registerScript' => true,
 
         /**
          * The name of the signals variable that will be injected into Datastar templates.
@@ -37,9 +37,9 @@ return [
         ],
 
         /**
-         * The fragment options to override the Datastar defaults. Null values will be ignored.
+         * The element options to override the Datastar defaults. Null values will be ignored.
          */
-        'defaultFragmentOptions' => [
+        'defaultElementOptions' => [
             'useViewTransition' => null,
         ],
 

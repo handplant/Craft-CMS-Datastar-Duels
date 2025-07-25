@@ -21,13 +21,13 @@
 
 {# Erste Seite #}
 {% if signals.page == 1 %}
-  {% fragment %}
+  {% patchelements %}
     <ul id="result"></ul>
-  {% endfragment %}
-  {% fragment %}
+  {% endpatchelements %}
+  {% patchelements %}
     <ul id="loadmore"></ul>
-  {% endfragment %}
-  {% fragment %}
+  {% endpatchelements %}
+  {% patchelements %}
     <ul id="result">
       {% for duel in duels %}
         <li>
@@ -37,21 +37,21 @@
         <li>Looks like no one's fighting... yet.</li>
       {% endfor %}
     </ul>
-  {% endfragment %}
+  {% endpatchelements %}
 {% else %}
   {# Weitere Seiten #}
-  {% fragment with {selector: '#result', mergeMode: 'append'} %}
+  {% patchelements with {selector: '#result', mode: 'append'} %}
     {% for duel in duels %}
       <li>
         {{ include("_components/duel", { duel: duel }, withContext = false) }}
       </li>
     {% endfor %}
-  {% endfragment %}
+  {% endpatchelements %}
 {% endif %}
 
 {# Load More Button #}
 {% if duelsCount > offset + signals.limit %}
-  {% fragment %}
+  {% patchelements %}
     <div id="loadmore">
       <button class="ui-btn text-sm"
               data-indicator-fetching
@@ -59,9 +59,9 @@
         Load More
       </button>
     </div>
-  {% endfragment %}
+  {% endpatchelements %}
 {% else %}
-  {% fragment %}
+  {% patchelements %}
     <div id="loadmore"></div>
-  {% endfragment %}
+  {% endpatchelements %}
 {% endif %}

@@ -40,19 +40,19 @@
 {% endif %}
 
 {% if response.isSuccessful %}
-  {% fragment %}
+  {% patchelements %}
     {{ include("_components/duel", {
       duel: duel
     }, withContext = false) }}
-  {% endfragment %}
+  {% endpatchelements %}
 {% else %}
-  {% fragment %}
+  {% patchelements %}
     <div id="alert" class="alert-error">
       {% for error in response.data.errors %}
         {{ error|first }}
       {% endfor %}
     </div>
-  {% endfragment %}
+  {% endpatchelements %}
 {% endif %}
 
 

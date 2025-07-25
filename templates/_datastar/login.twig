@@ -3,19 +3,19 @@
   password: signals.password,
   rememberMe: signals.rememberme,
 }) %}
-  {% fragment %}
+  {% patchelements %}
     <div id="verified"></div>
-  {% endfragment %}
+  {% endpatchelements %}
 
 {% if not loginResponse.isSuccessful %}
-  {% fragment %}
+  {% patchelements %}
     <div id="alert-login"></div>
-  {% endfragment %}
-  {% fragment %}
+  {% endpatchelements %}
+  {% patchelements %}
     <div id="alert-login" class="alert-error text-left m-0 p-0">
       {{ loginResponse.data.message }}
     </div>
-  {% endfragment %}
+  {% endpatchelements %}
 {% else %}
   {% location '/profile' %}
 {% endif %}

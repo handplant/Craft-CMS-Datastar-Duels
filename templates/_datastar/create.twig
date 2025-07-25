@@ -28,24 +28,24 @@
   .one() %}
 
 {% if signals.rivalone == "" or signals.rivaltwo == "" %}
-  {% fragment %}
+  {% patchelements %}
     <div id="alert" class="alert-error text-center mb-5">
       It takes two to duel!
     </div>
-  {% endfragment %}
+  {% endpatchelements %}
 {% elseif signals.rivalone == signals.rivaltwo %}
-  {% fragment %}
+  {% patchelements %}
     <div id="alert" class="alert-error text-center mb-5">
       A duel needs two different rivals!
     </div>
-  {% endfragment %}
+  {% endpatchelements %}
 {% elseif existingDuel %}
-  {% fragment %}
+  {% patchelements %}
     <div id="alert" class="alert-error text-center mb-5">
       Nice try, but this duel already exists!<br>
       <a class="!text-black" href="{{ existingDuel.getUrl() }}">👉 check it out!</a>
     </div>
-  {% endfragment %}
+  {% endpatchelements %}
 {% else %}
   {# Teilnehmer A verarbeiten #}
   {% if existingRivalOne %}
@@ -110,30 +110,30 @@
   {% endif %}
 
   {% if errors %}
-    {% fragment %}
+    {% patchelements %}
       <div id="alert" class="alert-error text-center mb-5">
         {% for error in errors %}
           <div>{{ error }}</div>
         {% endfor %}
       </div>
-    {% endfragment %}
+    {% endpatchelements %}
   {% else %}
-    {% do signals.set('modal', false) %}
-    {% do signals.set('rivalone', '') %}
-    {% do signals.set('rivaltwo', '') %}
-    {% do signals.set('sort', 'dateCreated DESC') %}
+    {% patchsignals { modal: false } %}
+    {% patchsignals { rivalone: '' } %}
+    {% patchsignals { rivaltwo: '' } %}
+    {% patchsignals { sort: 'dateCreated DESC' } %}
     {% set newDuel = craft.entries.id(duelResponse.data.id).one() %}
 
-    {% fragment %}
+    {% patchelements %}
       <div id="alert"></div>
-    {% endfragment %}
+    {% endpatchelements %}
 
-    {% fragment with {selector: '#result', mergeMode: 'prepend'} %}
+    {% patchelements with {selector: '#result', mode: 'prepend'} %}
       <li class="animate-new">
         {{ include("_components/duel", {
           duel: newDuel
         }, withContext = false) }}
       </li>
-    {% endfragment %}
+    {% endpatchelements %}
   {% endif %}
 {% endif %}
