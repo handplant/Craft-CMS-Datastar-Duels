@@ -21,9 +21,9 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "craftcms/cms": "5.8.10",
+    "craftcms/cms": "5.8.17",
     "nystudio107/craft-vite": "5.0.1",
-    "putyourlightson/craft-datastar": "1.0.0-RC.2",
+    "putyourlightson/craft-datastar": "1.0.0-RC.8",
     "putyourlightson/craft-entry-count": "4.0.0",
     "vaersaagod/seomate": "3.2.0",
     "vlucas/phpdotenv": "^5.4.0"

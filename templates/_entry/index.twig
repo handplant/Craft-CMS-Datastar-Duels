@@ -23,9 +23,9 @@
 {% block main %}
   <section
     class="page"
-    data-on-load="{{ datastar.post('_datastar/duels.twig') }}"
     data-indicator-fetching
-    data-signals="{ page: 1, limit: 20, search: '', sort: 'duelScore DESC' }">
+    data-signals="{ page: 1, limit: 20, search: '', sort: 'duelScore DESC' }"
+    data-on-load="{{ datastar.post('_datastar/duels.twig') }}">
     <div data-show="$modal == false" class="flex items-center space-x-5 mb-4">
       <input
         id="searchInput"
@@ -48,5 +48,6 @@
     </div>
     <ul id="result"></ul>
     <div id="loadmore"></div>
+    {# <pre data-json-signals></pre> #}
   </section>
 {% endblock %}
