@@ -3,6 +3,7 @@
 {% set query = craft.entries.section('duels') %}
 
 {% if signals.search|length %}
+  {{ signals.search }}
   {% executescript %}
     _paq.push(['trackEvent', 'Search', 'Query', '{{ signals.search|e('js') }}']);
   {% endexecutescript %}
@@ -55,7 +56,7 @@
     <div id="loadmore">
       <button class="ui-btn text-sm"
               data-indicator-fetching
-              data-on-click="$page++;{{ datastar.post('_datastar/duels.twig') }}">
+              data-on:click="$page++;{{ datastar.post('_datastar/duels.twig') }}">
         Load More
       </button>
     </div>

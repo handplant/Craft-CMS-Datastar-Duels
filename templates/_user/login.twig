@@ -17,7 +17,7 @@
     {% endif %}
 
     <div id="info"></div>
-    <form id="form" accept-charset="UTF-8" class="ui-form" data-indicator-fetching data-on-submit="{{ datastar.post('_datastar/login.twig') }}">
+    <form id="form" accept-charset="UTF-8" class="ui-form" data-indicator-fetching data-on:submit="{{ datastar.post('_datastar/login.twig') }}">
       <p class="ui-bold text-xl">Login</p>
       <p class="text-sm"><a class="ui-link" href="{{ url('register') }}">or create a Warrior!</a></p>
       <div id="alert-login"></div>
@@ -28,7 +28,7 @@
           id: 'loginName',
           autocomplete: 'username',
           class: 'ui-input',
-          'data-bind-loginname': '',
+          'data-bind:loginname': '',
         }) }}
       </div>
 
@@ -37,7 +37,7 @@
         {{ input('password', 'password', null, {
           id: 'password',
           class: 'ui-input',
-          'data-bind-password': '',
+          'data-bind:password': '',
         }) }}
       </div>
 
@@ -47,7 +47,7 @@
             {{ input('checkbox', 'rememberMe', '1', {
               id: 'rememberMe',
               class: 'ui-checkbox col-start-1 row-start-1 ',
-              'data-bind-rememberme': '',
+              'data-bind:rememberme': '',
             }) }}
             <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
               <path class="opacity-0 group-has-[:checked]:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

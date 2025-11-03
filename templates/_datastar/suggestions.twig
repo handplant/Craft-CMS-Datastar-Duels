@@ -17,7 +17,7 @@
       <ul id="{{ resultId }}" data-show="${{ showsuggestion }}">
         {% for rival in rivals %}
           <li>
-            <button data-on-click__prevent="${{ showsuggestion }} = false; ${{ rivalinput }} = '{{ rival.title }}'" class="hover:cursor-pointer">
+            <button data-on:click__prevent="${{ showsuggestion }} = false; ${{ rivalinput }} = '{{ rival.title }}'" class="hover:cursor-pointer">
               {{ rival.title }}
             </button>
           </li>

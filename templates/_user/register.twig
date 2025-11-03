@@ -12,11 +12,11 @@
   <section data-signals="{ username: '', email: '', password: '', errors: { username: '', email: '', password: '' } }">
     <div id="info"></div>
     <form
-        id="form"
-        accept-charset="UTF-8"
-        class="ui-form"
-        data-indicator-fetching
-        data-on-submit="{{ datastar.post('_datastar/register.twig') }}"
+      id="form"
+      accept-charset="UTF-8"
+      class="ui-form"
+      data-indicator-fetching
+      data-on:submit="{{ datastar.post('_datastar/register.twig') }}"
     >
       <p class="ui-bold text-xl">Register</p>
       <p class="text-sm"><a class="ui-link" href="{{ url('login') }}">or login your Warrior!</a></p>
@@ -29,7 +29,7 @@
           id: 'username',
           autocomplete: 'username',
           class: 'ui-input',
-          'data-bind-username': '',
+          'data-bind:username': '',
         }) }}
         <p data-text="$errors.username" class="alert-error text-xs"></p>
       </div>
@@ -40,7 +40,7 @@
           id: 'email',
           autocomplete: 'email',
           class: 'ui-input',
-          'data-bind-email': '',
+          'data-bind:email': '',
         }) }}
         <p data-text="$errors.email" class="alert-error text-xs"></p>
       </div>
@@ -50,7 +50,7 @@
         {{ input('password', 'password', null, {
           id: 'password',
           class: 'ui-input',
-          'data-bind-password': '',
+          'data-bind:password': '',
         }) }}
         <p data-text="$errors.password" class="alert-error text-xs"></p>
       </div>

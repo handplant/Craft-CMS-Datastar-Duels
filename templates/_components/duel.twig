@@ -16,7 +16,7 @@
 
 <div id="duel{{ duel.id }}" class="grid grid-cols-[auto_1fr_auto] gap-4">
   <div class="text-center text-xs">
-    <button data-on-click="el.classList.add('voted'); setTimeout(() => el.classList.remove('voted'), 600);{{ datastar.post('_datastar/vote.twig', { duelId: duel.id, duelRivalId: duelRivalOne.id }) }}"
+    <button data-on:click="el.classList.add('voted'); setTimeout(() => el.classList.remove('voted'), 600);{{ datastar.post('_datastar/vote.twig', { duelId: duel.id, duelRivalId: duelRivalOne.id }) }}"
             class="ui-vote-btn">
       <span class="{{ userVoteRival and userVoteRival.id == duelRivalOne.id ? '' : 'opacity-60 grayscale' }}">
         🔥
@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="text-center text-xs">
-    <button data-on-click="el.classList.add('voted'); setTimeout(() => el.classList.remove('voted'), 600);{{ datastar.post('_datastar/vote.twig', { duelId: duel.id, duelRivalId: duelRivalTwo.id }) }}"
+    <button data-on:click="el.classList.add('voted'); setTimeout(() => el.classList.remove('voted'), 600);{{ datastar.post('_datastar/vote.twig', { duelId: duel.id, duelRivalId: duelRivalTwo.id }) }}"
             class="ui-vote-btn">
       <span class="{{ userVoteRival and userVoteRival.id == duelRivalTwo.id ? '' : 'opacity-60 grayscale' }}">
         🔥

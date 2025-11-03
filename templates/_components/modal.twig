@@ -1,6 +1,6 @@
 <div data-show="$modal == true" class="ds-cloak border border-secondary p-6 mb-6"
      data-signals="{ rivalone: '', rivaltwo: '' }"
-     data-on-signal-change-modal="{{ datastar.post('_datastar/signals.twig') }}"
+     data-on:signal-change-modal="{{ datastar.post('_datastar/signals.twig') }}"
 >
   {% if not currentUser %}
     <div class="text-center">
@@ -12,15 +12,15 @@
     </div>
   {% else %}
     <div id="debug"></div>
-    <form data-on-submit="{{ datastar.post('_datastar/create.twig') }}">
+    <form data-on:submit="{{ datastar.post('_datastar/create.twig') }}">
       <p class="text-center mb-4">New duel</p>
       <div class="grid grid-cols-[1fr_auto_1fr] gap-4 items-center">
         <div data-signals="{showsuggestionone: false, showsuggestiontwo: false}" class="relative">
           <input
-            data-bind-rivalone
+            data-bind:rivalone
             data-indicator-fetching
-            data-on-input__debounce.300ms="{{ datastar.post('_datastar/suggestions.twig', {side: 1}) }}"
-            data-on-focus="$showsuggestiontwo = false"
+            data-on:input__debounce.300ms="{{ datastar.post('_datastar/suggestions.twig', {side: 1}) }}"
+            data-on:focus="$showsuggestiontwo = false"
             placeholder="Rival ONE"
             class="ui-input text-right"/>
           <ul id="resultRivalOne" data-show="$showsuggestionone"></ul>
@@ -30,10 +30,10 @@
         </div>
         <div class="relative">
           <input
-            data-bind-rivaltwo
+            data-bind:rivaltwo
             data-indicator-fetching
-            data-on-input__debounce.300ms="{{ datastar.post('_datastar/suggestions.twig', {side: 2}) }}"
-            data-on-focus="$showsuggestionone = false"
+            data-on:input__debounce.300ms="{{ datastar.post('_datastar/suggestions.twig', {side: 2}) }}"
+            data-on:focus="$showsuggestionone = false"
             type="text"
             placeholder="Rival TWO"
             class="ui-input"/>
