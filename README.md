@@ -6,8 +6,6 @@ let the crowd decide. Whether it's **tabs vs spaces**, **cats vs dogs**, or **li
 duel. The votes decide
 what's hot.
 
-👉 [See it live in action: versus.webworker.me](https://versus.webworker.me)
-
 ## 🛠️ Built with
 
 - [Craft CMS](https://craftcms.com/)
